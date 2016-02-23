@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" ng-app="">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" ng-app="myApp">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 </head>
 <body>
-
-This is home
 <form th:action="@{/appUser}" method="post">
-    <input type="text" name="userName" />
-    <input type="text" name="password" />
-    <input type="submit" value="submit" />
+    <input type="text" name="userName"/>
+    <input type="text" name="password"/>
+    <input type="submit" value="submit"/>
+
 </form>
 
-<div class="container">
-    Name: <input type="text" data-ng-model="name" /> {{name}}
+
+<div class="container" ng-controller="myCtrl">
+    <h3> All User List</h3>
+    <ul>
+        <li ng-repeat="appUser in appUserList">{{appUser}}</li>
+    </ul>
+
+    <form ng-submit="postUser()">
+        <input type="submit" value="Submit"/>
+    </form>
 </div>
+<script src="resouces/app.js"></script>
 </body>
 </html>
