@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function ($scope, $http) {
-    $http.get("http://localhost:8080/appUser")
+    $http.get("/appUser")
         .success(function (data) {
             console.log(data);
             $scope.appUserList = data;
@@ -11,8 +11,9 @@ app.controller('myCtrl', function ($scope, $http) {
             method: 'POST',
             url: "/appUser",
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: 'userName="asadasd"&password="123"'
-        }).success(function () {
+            data: 'userName='+$scope.userName+'&password='+$scope.password
+        }).success(function (data) {
+            alert(data.id);
         });
     }
 });
