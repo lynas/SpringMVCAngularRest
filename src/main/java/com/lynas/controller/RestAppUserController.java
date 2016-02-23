@@ -1,6 +1,7 @@
 package com.lynas.controller;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lynas.model.AppUser;
 import com.lynas.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,40 +15,39 @@ public class RestAppUserController {
 
     @Autowired
     AppUserService appUserService;
-    Gson gson = new Gson();
+    ObjectMapper mapper = new ObjectMapper();
 
 
     @RequestMapping(value = "/appUser", method = RequestMethod.GET)
     @ResponseBody
-    public String get() {
-
-        return gson.toJson(appUserService.getAllAppUsers());
+    public String get() throws JsonProcessingException {
+        return mapper.writeValueAsString(appUserService.getAllAppUsers());
     }
 
 
     @RequestMapping(value = "/appUser/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String getByID(@PathVariable int id) {
-        return gson.toJson(appUserService.readAppUserById(id));
+    public String getByID(@PathVariable int id) throws JsonProcessingException {
+        return mapper.writeValueAsString(appUserService.readAppUserById(id));
     }
 
     @RequestMapping(value = "/appUser", method = RequestMethod.POST)
     @ResponseBody
-    public String postAppUser(@RequestBody AppUser appUser) {
+    public String postAppUser(@RequestBody AppUser appUser) throws JsonProcessingException {
         int newUserId = appUserService.insertAppUser(appUser);
-        return gson.toJson(appUserService.readAppUserById(newUserId));
+        return mapper.writeValueAsString(appUserService.readAppUserById(newUserId));
     }
 
 
     @RequestMapping(value = "/appUser/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public String updateAppUser(@PathVariable int id, @RequestBody AppUser appUser) {
+    public String updateAppUser(@PathVariable int id, @RequestBody AppUser appUser) throws JsonProcessingException {
         AppUser updateAppUser = appUserService.readAppUserById(id);
         updateAppUser.setUserName(appUser.getUserName());
         updateAppUser.setPassword(appUser.getPassword());
         appUserService.updateAppUser(updateAppUser);
         System.out.println("test");
-        return gson.toJson(updateAppUser);
+        return mapper.writeValueAsString(updateAppUser);
     }
 
     @RequestMapping(value = "/appUser/{id}", method = RequestMethod.DELETE)
