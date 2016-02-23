@@ -10,10 +10,29 @@ app.controller('myCtrl', function ($scope, $http) {
         $http({
             method: 'POST',
             url: "/appUser",
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: 'userName='+$scope.userName+'&password='+$scope.password
+            data: {userName: $scope.userName, password: $scope.password}
         }).success(function (data) {
             alert(data.id);
         });
+    };
+
+    $scope.updateAppUser = function () {
+        $http({
+            method: 'PUT',
+            url: "/appUser/"+$scope.id,
+            data: {userName: $scope.userName, password: $scope.password}
+        }).success(function (data) {
+            $scope.updatedUser = data;
+        });
+    };
+
+    $scope.getUserById = function () {
+        $http.get("/appUser/" + $scope.id)
+            .success(function (data) {
+                console.log(data);
+                $scope.oneUser = data;
+            });
     }
+
+
 });

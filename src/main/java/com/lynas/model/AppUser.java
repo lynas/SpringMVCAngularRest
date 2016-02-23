@@ -13,9 +13,9 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false, unique = true)
+    @Column
     private String userName;
-    @Column(nullable = false)
+    @Column
     private String password;
 
 

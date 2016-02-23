@@ -31,23 +31,23 @@ public class RestAppUserController {
         return gson.toJson(appUserService.readAppUserById(id));
     }
 
-
     @RequestMapping(value = "/appUser", method = RequestMethod.POST)
     @ResponseBody
-    public String postAppUser(@RequestParam String userName, @RequestParam String password) {
-        int newUserId = appUserService.insertAppUser(new AppUser(userName, password));
+    public String postAppUser(@RequestBody AppUser appUser) {
+        int newUserId = appUserService.insertAppUser(appUser);
         return gson.toJson(appUserService.readAppUserById(newUserId));
     }
 
 
     @RequestMapping(value = "/appUser/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public String updateAppUser(@PathVariable int id, @RequestParam String userName, @RequestParam String password) {
-        AppUser appUser = appUserService.readAppUserById(id);
-        appUser.setUserName(userName);
-        appUser.setPassword(password);
-        appUserService.updateAppUser(appUser);
-        return gson.toJson(appUserService.readAppUserById(id));
+    public String updateAppUser(@PathVariable int id, @RequestBody AppUser appUser) {
+        AppUser updateAppUser = appUserService.readAppUserById(id);
+        updateAppUser.setUserName(appUser.getUserName());
+        updateAppUser.setPassword(appUser.getPassword());
+        appUserService.updateAppUser(updateAppUser);
+        System.out.println("test");
+        return gson.toJson(updateAppUser);
     }
 
     @RequestMapping(value = "/appUser/{id}", method = RequestMethod.DELETE)
