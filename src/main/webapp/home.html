@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" ng-app="">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 </head>
@@ -12,5 +12,8 @@ This is home
     <input type="submit" value="submit" />
 </form>
 
+<div class="container">
+    Name: <input type="text" data-ng-model="name" /> {{name}}
+</div>
 </body>
 </html>
