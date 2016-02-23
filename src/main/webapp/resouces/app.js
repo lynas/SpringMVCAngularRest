@@ -31,14 +31,14 @@ app.controller('myCtrl', function ($scope, $http) {
             .success(function (data) {
                 $scope.oneUser = data;
             });
-    }
+    };
 
     $scope.deleteAppUserById = function () {
         $http.delete("/appUser/" + $scope.id)
             .success(function (data) {
                 $scope.deleteStatus = data;
             });
-    }
+    };
 
 
 });

@@ -46,7 +46,6 @@ public class RestAppUserController {
         updateAppUser.setUserName(appUser.getUserName());
         updateAppUser.setPassword(appUser.getPassword());
         appUserService.updateAppUser(updateAppUser);
-        System.out.println("test");
         return mapper.writeValueAsString(updateAppUser);
     }
 
