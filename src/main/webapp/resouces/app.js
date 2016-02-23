@@ -12,7 +12,7 @@ app.controller('myCtrl', function ($scope, $http) {
             url: "/appUser",
             data: {userName: $scope.userName, password: $scope.password}
         }).success(function (data) {
-            alert(data.id);
+            $scope.newAppUser = data;
         });
     };
 
@@ -29,8 +29,14 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.getUserById = function () {
         $http.get("/appUser/" + $scope.id)
             .success(function (data) {
-                console.log(data);
                 $scope.oneUser = data;
+            });
+    }
+
+    $scope.deleteAppUserById = function () {
+        $http.delete("/appUser/" + $scope.id)
+            .success(function (data) {
+                $scope.deleteStatus = data;
             });
     }
 
