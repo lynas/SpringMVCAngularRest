@@ -25,11 +25,34 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Transactional
-    public AppUser readUserByUserName(String userName) {
+    public AppUser readAppUserByUserName(String userName) {
         return (AppUser) sessionFactory
                 .getCurrentSession()
                 .createCriteria(AppUser.class)
                 .add(Restrictions.eq("userName", userName))
                 .uniqueResult();
+    }
+
+    @Transactional
+    public AppUser readAppUserById(int id) {
+        return (AppUser) sessionFactory
+                .getCurrentSession()
+                .createCriteria(AppUser.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
+    }
+
+    @Transactional
+    public void updateAppUser(AppUser appUser) {
+        sessionFactory
+                .getCurrentSession()
+                .update(appUser);
+    }
+
+    @Transactional
+    public void deleteAppUser(int id) {
+        sessionFactory
+                .getCurrentSession()
+                .delete(readAppUserById(id));
     }
 }

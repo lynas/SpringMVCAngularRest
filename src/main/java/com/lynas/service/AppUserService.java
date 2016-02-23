@@ -8,5 +8,11 @@ import com.lynas.model.AppUser;
 public interface AppUserService {
     void insertAppUser(AppUser appUser);
 
-    AppUser readUserByUserName(String userName);
+    AppUser readAppUserByUserName(String userName);
+
+    AppUser readAppUserById(int id);
+
+    void updateAppUser(AppUser appUser);
+
+    void deleteAppUser(int id);
 }
