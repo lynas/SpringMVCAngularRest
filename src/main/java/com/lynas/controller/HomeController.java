@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by sazzad on 2/11/16.
+ * Created by sazzad on 2/11/16
  */
 @Controller
 public class HomeController {

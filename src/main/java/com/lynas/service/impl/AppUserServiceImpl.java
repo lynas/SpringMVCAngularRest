@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
- * Created by sazzad on 2/11/16.
+ * Created by sazzad on 2/11/16
  */
+@SuppressWarnings("unchecked")
 @Service
 public class AppUserServiceImpl implements AppUserService {
 
@@ -18,8 +21,8 @@ public class AppUserServiceImpl implements AppUserService {
     private SessionFactory sessionFactory;
 
     @Transactional
-    public void insertAppUser(AppUser appUser) {
-        sessionFactory
+    public int insertAppUser(AppUser appUser) {
+        return (Integer) sessionFactory
                 .getCurrentSession()
                 .save(appUser);
     }
@@ -54,5 +57,13 @@ public class AppUserServiceImpl implements AppUserService {
         sessionFactory
                 .getCurrentSession()
                 .delete(readAppUserById(id));
+    }
+
+    @Transactional
+    public List<AppUser> getAllAppUsers() {
+        return sessionFactory
+                .getCurrentSession()
+                .createCriteria(AppUser.class)
+                .list();
     }
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by sazzad on 2/11/16.
+ * Created by sazzad on 2/11/16
  */
 @Entity
 public class AppUser {

@@ -2,11 +2,13 @@ package com.lynas.service;
 
 import com.lynas.model.AppUser;
 
+import java.util.List;
+
 /**
- * Created by sazzad on 2/11/16.
+ * Created by sazzad on 2/11/16
  */
 public interface AppUserService {
-    void insertAppUser(AppUser appUser);
+    int insertAppUser(AppUser appUser);
 
     AppUser readAppUserByUserName(String userName);
 
@@ -15,4 +17,6 @@ public interface AppUserService {
     void updateAppUser(AppUser appUser);
 
     void deleteAppUser(int id);
+
+    List<AppUser> getAllAppUsers();
 }

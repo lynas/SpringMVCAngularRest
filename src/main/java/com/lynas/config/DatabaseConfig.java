@@ -26,23 +26,16 @@ public class DatabaseConfig {
 
     @Bean(name = "DataSource")
     public HikariDataSource dataSourceWinMacLinux() {
-        return getDataSource("127.0.0.1","root","");
-    }
-
-
-
-    private HikariDataSource getDataSource(String serverName, String user, String password){
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
         dataSource.addDataSourceProperty("databaseName", "test");
         dataSource.addDataSourceProperty("portNumber", "3306");
-        dataSource.addDataSourceProperty("serverName", serverName);
-        dataSource.addDataSourceProperty("user", user);
-        dataSource.addDataSourceProperty("password", password);
+        dataSource.addDataSourceProperty("serverName", "127.0.0.1");
+        dataSource.addDataSourceProperty("user", "root");
+        dataSource.addDataSourceProperty("password", "123456");
         return dataSource;
+
     }
-
-
     @Bean
     public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager manager = new HibernateTransactionManager();
