@@ -10,8 +10,6 @@ import java.util.List;
 public interface AppUserService {
     int insertAppUser(AppUser appUser);
 
-    AppUser readAppUserByUserName(String userName);
-
     AppUser readAppUserById(int id);
 
     void updateAppUser(AppUser appUser);
